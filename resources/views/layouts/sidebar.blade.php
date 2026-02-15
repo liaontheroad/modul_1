@@ -14,7 +14,7 @@
       </a>
     </li>
 
-    <li class="nav-item">
+    <li class="nav-item {{ Request::is('home') ? 'active' : '' }}">
       <a class="nav-link" href="/home">
         <span class="menu-title">Dashboard</span>
         <i class="mdi mdi-home menu-icon"></i>
@@ -28,14 +28,14 @@
          </span>
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item {{ Request::is('kategori*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('kategori.index') }}">
           <span class="menu-title">Kelola Kategori</span>
           <i class="mdi mdi-format-list-bulleted menu-icon"></i>
         </a>
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item {{ Request::is('buku*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('buku.index') }}">
           <span class="menu-title">Kelola Buku</span>
           <i class="mdi mdi-book-open-page-variant menu-icon"></i>
@@ -50,14 +50,14 @@
          </span>
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item {{ Request::is('visitor/kategori*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('visitor.kategori') }}">
           <span class="menu-title">Daftar Kategori</span>
           <i class="mdi mdi-format-list-bulleted menu-icon"></i>
         </a>
       </li>
 
-      <li class="nav-item">
+      <li class="nav-item {{ Request::is('visitor/buku*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('visitor.buku') }}">
           <span class="menu-title">Daftar Buku</span>
           <i class="mdi mdi-book-open-variant menu-icon"></i>

@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Koleksi Buku</title>
-    
+    <title>Koleksi Buku</title>   
     <link rel="stylesheet" href="{{ asset('assets/vendors/mdi/css/materialdesignicons.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-    
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">  
     @stack('styles')
 </head>
 <body>
@@ -20,15 +18,12 @@
                 <div class="content-wrapper">
                     @yield('content')
                 </div>
-
                 @include('layouts.footer')
             </div>
         </div>
     </div>
-
     <script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>
     <script src="{{ asset('assets/js/off-canvas.js') }}"></script>
-    
     @stack('scripts')
 </body>
 </html>
