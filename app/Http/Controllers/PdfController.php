@@ -7,14 +7,14 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class PdfController extends Controller
 {
-    public function sertifikat()
+    public function landscape()
     {
         $pdf = Pdf::loadView('pdf.landscape')->setPaper('a4', 'landscape');
         
         return $pdf->stream('Sertifikat_Kegiatan.pdf');
     }
 
-    public function undangan()
+    public function potrait()
     {
         $pdf = Pdf::loadView('pdf.potrait')->setPaper('a4', 'portrait');
         

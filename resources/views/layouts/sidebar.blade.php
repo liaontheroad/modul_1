@@ -47,14 +47,14 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="/cetak-sertifikat" target="_blank">
+        <a class="nav-link" href="/cetak-landscape" target="_blank">
           <span class="menu-title">Cetak PDF Landscape</span>
           <i class="mdi mdi-file-document menu-icon"></i>
         </a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="/cetak-undangan" target="_blank">
+        <a class="nav-link" href="/cetak-potrait" target="_blank">
           <span class="menu-title">Cetak PDF Potrait</span>
           <i class="mdi mdi-email-open menu-icon"></i>
         </a>
@@ -87,14 +87,14 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="/cetak-sertifikat" target="_blank">
+        <a class="nav-link" href="/cetak-landscape" target="_blank">
           <span class="menu-title">Cetak PDF Landscape</span>
           <i class="mdi mdi-file-document menu-icon"></i>
         </a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="/cetak-undangan" target="_blank">
+        <a class="nav-link" href="/cetak-potrait" target="_blank">
           <span class="menu-title">Cetak PDF Potrait</span>
           <i class="mdi mdi-email-open menu-icon"></i>
         </a>

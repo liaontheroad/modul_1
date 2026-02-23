@@ -44,5 +44,5 @@ Route::middleware(['auth', 'check_status'])->group(function () {
 });
 
 // Rute untuk Download PDF
-Route::get('/cetak-sertifikat', [App\Http\Controllers\PdfController::class, 'sertifikat']);
-Route::get('/cetak-undangan', [App\Http\Controllers\PdfController::class, 'undangan']);
+Route::get('/cetak-landscape', [App\Http\Controllers\PdfController::class, 'landscape']);
+Route::get('/cetak-potrait', [App\Http\Controllers\PdfController::class, 'potrait']);
