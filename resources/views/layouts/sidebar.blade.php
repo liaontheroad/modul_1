@@ -21,7 +21,7 @@
       </a>
     </li>
 
-    @if(Auth::user()->role->name == 'admin')
+    @if(Auth::user()->role?->name == 'admin')
       <li class="nav-item">
          <span class="nav-link" style="font-size: 0.8em; color: #b66dff; font-weight: bold; margin-top: 15px;">
             ADMIN MENU
@@ -39,6 +39,24 @@
         <a class="nav-link" href="{{ route('buku.index') }}">
           <span class="menu-title">Kelola Buku</span>
           <i class="mdi mdi-book-open-page-variant menu-icon"></i>
+        </a>
+      </li>
+
+      <li class="nav-item nav-category">
+        <span class="nav-link">CETAK PDF </span>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/cetak-sertifikat" target="_blank">
+          <span class="menu-title">Cetak PDF Landscape</span>
+          <i class="mdi mdi-file-document menu-icon"></i>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/cetak-undangan" target="_blank">
+          <span class="menu-title">Cetak PDF Potrait</span>
+          <i class="mdi mdi-email-open menu-icon"></i>
         </a>
       </li>
     @endif
@@ -61,6 +79,24 @@
         <a class="nav-link" href="{{ route('visitor.buku') }}">
           <span class="menu-title">Daftar Buku</span>
           <i class="mdi mdi-book-open-variant menu-icon"></i>
+        </a>
+      </li>
+
+      <li class="nav-item nav-category">
+        <span class="nav-link">CETAK PDF</span>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/cetak-sertifikat" target="_blank">
+          <span class="menu-title">Cetak PDF Landscape</span>
+          <i class="mdi mdi-file-document menu-icon"></i>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/cetak-undangan" target="_blank">
+          <span class="menu-title">Cetak PDF Potrait</span>
+          <i class="mdi mdi-email-open menu-icon"></i>
         </a>
       </li>
     @endif

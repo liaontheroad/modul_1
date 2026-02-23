@@ -14,8 +14,8 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $middleware->alias([
             'role' => \App\Http\Middleware\CheckRole::class,
+            'check_status' => \App\Http\Middleware\CheckStatus::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        //
     })->create();

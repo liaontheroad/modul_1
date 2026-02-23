@@ -1,6 +1,18 @@
 @extends('layouts.main')
 
 @section('content')
+<div class="page-header">
+  <h3 class="page-title"> Tambah Buku </h3>
+  <nav aria-label="breadcrumb">
+    <ul class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/home">Dashboard</a></li>
+      <li class="breadcrumb-item"><a href="{{ route('buku.index') }}">Buku</a></li>
+      <li class="breadcrumb-item active" aria-current="page">
+        <span></span>Tambah <i class="mdi mdi-plus-circle-outline icon-sm text-primary align-middle"></i>
+      </li>
+    </ul>
+  </nav>
+</div>
 <div class="row">
     <div class="col-12 grid-margin stretch-card">
         <div class="card">

@@ -6,12 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
 {
-    protected $table = 'roles'; // Connects to the 'roles' table
-    public $timestamps = false; // We didn't create created_at/updated_at columns in the SQL
+    protected $table = 'roles'; 
+    public $timestamps = false; 
     
     protected $fillable = ['name'];
 
-    // RELATIONSHIP: One Role has many Users
     public function users()
     {
         return $this->hasMany(User::class, 'role_id');
@@ -23,7 +22,7 @@ class Role extends Model
         'name' => ['required', 'string', 'max:255'],
         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
         'password' => ['required', 'string', 'min:8', 'confirmed'],
-        'role_id' => ['required'], // <--- ADD THIS
+        'role_id' => ['required'], 
     ]);
 }
 
@@ -33,7 +32,7 @@ class Role extends Model
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'role_id' => (int) $data['role_id'], // <--- ADD THIS
+            'role_id' => (int) $data['role_id'], 
         ]);
     }
 }

@@ -1,4 +1,4 @@
-@extends('layouts.main') {{-- <--- This connects to your Purple Template --}}
+@extends('layouts.main')
 
 @section('content')
 <div class="content-wrapper">

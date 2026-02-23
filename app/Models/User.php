@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -18,10 +17,14 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    'name', 
+    'email', 
+    'password', 
+    'id_google', 
+    'otp', 
+    'status', 
+    'role_id'
+];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -48,13 +51,11 @@ class User extends Authenticatable
 
     public function role()
     {
-        // This looks for 'role_id' in the users table automatically
         return $this->belongsTo(Role::class, 'role_id');
     }
 
     public function hasRole($roleName)
     {
-        // We use optional() just in case a user has NO role assigned
         return optional($this->role)->name === $roleName;
     }
 }

@@ -1,6 +1,18 @@
 @extends('layouts.main')
 
 @section('content')
+<div class="page-header">
+  <h3 class="page-title"> Edit Kategori </h3>
+  <nav aria-label="breadcrumb">
+    <ul class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/home">Dashboard</a></li>
+      <li class="breadcrumb-item"><a href="{{ route('kategori.index') }}">Kategori</a></li>
+      <li class="breadcrumb-item active" aria-current="page">
+        <span></span>Edit <i class="mdi mdi-pencil-circle-outline icon-sm text-primary align-middle"></i>
+      </li>
+    </ul>
+  </nav>
+</div>
 <div class="row">
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
