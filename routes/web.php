@@ -7,6 +7,7 @@ use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\VisitorController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\BarangController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -46,3 +47,10 @@ Route::middleware(['auth', 'check_status'])->group(function () {
 // Rute untuk Download PDF
 Route::get('/cetak-landscape', [App\Http\Controllers\PdfController::class, 'landscape']);
 Route::get('/cetak-potrait', [App\Http\Controllers\PdfController::class, 'potrait']);
+
+// Rute untuk CRUD Barang
+Route::get('/barang', [BarangController::class, 'index'])->name('barang.index');
+Route::get('/barang/create', [BarangController::class, 'create'])->name('barang.create');
+Route::post('/barang', [BarangController::class, 'store'])->name('barang.store');
+Route::delete('/barang/{id}', [BarangController::class, 'destroy'])->name('barang.destroy');
+Route::post('/barang/cetak', [BarangController::class, 'cetak'])->name('barang.cetak');

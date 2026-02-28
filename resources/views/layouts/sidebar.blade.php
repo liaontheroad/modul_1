@@ -42,6 +42,13 @@
         </a>
       </li>
 
+      <li class="nav-item {{ Request::is('barang*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('barang.index') }}">
+          <span class="menu-title">Tag Harga UMKM</span>
+          <i class="mdi mdi-tag menu-icon"></i>
+        </a>
+      </li>
+
       <li class="nav-item nav-category">
         <span class="nav-link">CETAK PDF </span>
       </li>
