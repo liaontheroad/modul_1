@@ -19,7 +19,7 @@
             <div class="card-body">
                 <h4 class="card-title">Edit Buku</h4>
                 
-                <form class="forms-sample" action="{{ route('buku.update', $buku->idbuku) }}" method="POST">
+                <form id="formEditBuku" class="forms-sample" action="{{ route('buku.update', $buku->idbuku) }}" method="POST">
                     @csrf
                     @method('PUT')
                     
@@ -49,11 +49,25 @@
                         </select>
                     </div>
                     
-                    <button type="submit" class="btn btn-gradient-primary me-2">Update</button>
+                    <button type="button" id="btnUpdateBuku" onclick="prosesUpdateBuku()" class="btn btn-gradient-primary me-2">Update</button>
                     <a href="{{ route('buku.index') }}" class="btn btn-light">Cancel</a>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    function prosesUpdateBuku() {
+        let form = document.getElementById("formEditBuku");
+        let btn = document.getElementById("btnUpdateBuku");
+        if (!form.checkValidity()) {
+            form.reportValidity();
+        } else {
+            btn.disabled = true; 
+            btn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Mengupdate...';
+            form.submit();
+        }
+    }
+</script>
 @endsection

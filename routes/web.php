@@ -8,6 +8,7 @@ use App\Http\Controllers\BukuController;
 use App\Http\Controllers\VisitorController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\StudyCaseController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -52,5 +53,15 @@ Route::get('/cetak-potrait', [App\Http\Controllers\PdfController::class, 'potrai
 Route::get('/barang', [BarangController::class, 'index'])->name('barang.index');
 Route::get('/barang/create', [BarangController::class, 'create'])->name('barang.create');
 Route::post('/barang', [BarangController::class, 'store'])->name('barang.store');
+
+Route::get('/barang/{id}/edit', [BarangController::class, 'edit'])->name('barang.edit');
+Route::put('/barang/{id}', [BarangController::class, 'update'])->name('barang.update');
+
 Route::delete('/barang/{id}', [BarangController::class, 'destroy'])->name('barang.destroy');
 Route::post('/barang/cetak', [BarangController::class, 'cetak'])->name('barang.cetak');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/modul-4/tabel-biasa', [StudyCaseController::class, 'tabelBiasa'])->name('modul4.biasa');
+    Route::get('/modul-4/tabel-datatables', [StudyCaseController::class, 'tabelDataTables'])->name('modul4.datatables');
+    Route::get('/modul-4/select2-kota', [StudyCaseController::class, 'select2Kota'])->name('modul4.select2');
+});

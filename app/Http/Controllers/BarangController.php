@@ -34,6 +34,31 @@ class BarangController extends Controller
         return redirect()->route('barang.index')->with('success', 'Barang berhasil ditambahkan!');
     }
 
+    public function edit($id)
+    {
+        // Ambil data barang berdasarkan id
+        $barang = DB::table('barang')->where('id_barang', $id)->first();
+        
+        return view('barang.edit', compact('barang'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        // Validasi input
+        $request->validate([
+            'nama' => 'required|max:50',
+            'harga' => 'required|numeric'
+        ]);
+
+        // Update data ke database
+        DB::table('barang')->where('id_barang', $id)->update([
+            'nama' => $request->nama,
+            'harga' => $request->harga
+        ]);
+
+        return redirect()->route('barang.index')->with('success', 'Data permen berhasil diupdate!');
+    }
+
     public function destroy($id)
     {
         DB::table('barang')->where('id_barang', $id)->delete();

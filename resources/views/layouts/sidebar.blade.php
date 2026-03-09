@@ -22,24 +22,23 @@
     </li>
 
     @if(Auth::user()->role?->name == 'admin')
-      <li class="nav-item">
-         <span class="nav-link" style="font-size: 0.8em; color: #b66dff; font-weight: bold; margin-top: 15px;">
-            ADMIN MENU
-         </span>
-      </li>
-
-      <li class="nav-item {{ Request::is('kategori*') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('kategori.index') }}">
-          <span class="menu-title">Kelola Kategori</span>
-          <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+      
+      <li class="nav-item {{ Request::is('kategori*') || Request::is('buku*') ? 'active' : '' }}">
+        <a class="nav-link" data-bs-toggle="collapse" href="#data-master" aria-expanded="{{ Request::is('kategori*') || Request::is('buku*') ? 'true' : 'false' }}" aria-controls="data-master">
+          <span class="menu-title">Data Master</span>
+          <i class="menu-arrow"></i>
+          <i class="mdi mdi-database menu-icon"></i>
         </a>
-      </li>
-
-      <li class="nav-item {{ Request::is('buku*') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('buku.index') }}">
-          <span class="menu-title">Kelola Buku</span>
-          <i class="mdi mdi-book-open-page-variant menu-icon"></i>
-        </a>
+        <div class="collapse {{ Request::is('kategori*') || Request::is('buku*') ? 'show' : '' }}" id="data-master">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> 
+              <a class="nav-link {{ Request::is('kategori*') ? 'active' : '' }}" href="{{ route('kategori.index') }}">Kelola Kategori</a>
+            </li>
+            <li class="nav-item"> 
+              <a class="nav-link {{ Request::is('buku*') ? 'active' : '' }}" href="{{ route('buku.index') }}">Kelola Buku</a>
+            </li>
+          </ul>
+        </div>
       </li>
 
       <li class="nav-item {{ Request::is('barang*') ? 'active' : '' }}">
@@ -49,63 +48,87 @@
         </a>
       </li>
 
-      <li class="nav-item nav-category">
-        <span class="nav-link">CETAK PDF </span>
+      <li class="nav-item {{ Request::is('modul-4*') ? 'active' : '' }}">
+        <a class="nav-link" data-bs-toggle="collapse" href="#modul-empat" aria-expanded="{{ Request::is('modul-4*') ? 'true' : 'false' }}" aria-controls="modul-empat">
+          <span class="menu-title">Modul 4</span>
+          <i class="menu-arrow"></i>
+          <i class="mdi mdi-flask menu-icon"></i> 
+        </a>
+        <div class="collapse {{ Request::is('modul-4*') ? 'show' : '' }}" id="modul-empat">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> 
+              <a class="nav-link {{ Request::routeIs('modul4.biasa') ? 'active' : '' }}" href="{{ route('modul4.biasa') }}">Tabel Biasa</a>
+            </li>
+            
+            <li class="nav-item"> 
+              <a class="nav-link {{ Request::routeIs('modul4.datatables') ? 'active' : '' }}" href="{{ route('modul4.datatables') }}">Tabel DataTables</a>
+            </li>
+
+            <li class="nav-item"> 
+              <a class="nav-link {{ Request::routeIs('modul4.select2') ? 'active' : '' }}" href="{{ route('modul4.select2') }}">Select2 Kota</a>
+            </li>
+          </ul>
+        </div>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="/cetak-landscape" target="_blank">
-          <span class="menu-title">Cetak PDF Landscape</span>
-          <i class="mdi mdi-file-document menu-icon"></i>
+        <a class="nav-link" data-bs-toggle="collapse" href="#cetak-pdf-admin" aria-expanded="false" aria-controls="cetak-pdf-admin">
+          <span class="menu-title">Cetak Laporan PDF</span>
+          <i class="menu-arrow"></i>
+          <i class="mdi mdi-printer menu-icon"></i>
         </a>
+        <div class="collapse" id="cetak-pdf-admin">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> 
+              <a class="nav-link" href="/cetak-landscape" target="_blank">Cetak Landscape</a>
+            </li>
+            <li class="nav-item"> 
+              <a class="nav-link" href="/cetak-potrait" target="_blank">Cetak Potrait</a>
+            </li>
+          </ul>
+        </div>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="/cetak-potrait" target="_blank">
-          <span class="menu-title">Cetak PDF Potrait</span>
-          <i class="mdi mdi-email-open menu-icon"></i>
-        </a>
-      </li>
     @endif
 
-    @if(Auth::user()->role->name == 'visitor')
-      <li class="nav-item">
-         <span class="nav-link" style="font-size: 0.8em; color: #b66dff; font-weight: bold; margin-top: 15px;">
-            VISITOR MENU
-         </span>
-      </li>
+    @if(Auth::user()->role?->name == 'visitor')
 
-      <li class="nav-item {{ Request::is('visitor/kategori*') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('visitor.kategori') }}">
-          <span class="menu-title">Daftar Kategori</span>
-          <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+      <li class="nav-item {{ Request::is('visitor/kategori*') || Request::is('visitor/buku*') ? 'active' : '' }}">
+        <a class="nav-link" data-bs-toggle="collapse" href="#data-visitor" aria-expanded="{{ Request::is('visitor/kategori*') || Request::is('visitor/buku*') ? 'true' : 'false' }}" aria-controls="data-visitor">
+          <span class="menu-title">Data Perpustakaan</span>
+          <i class="menu-arrow"></i>
+          <i class="mdi mdi-book-open-page-variant menu-icon"></i>
         </a>
-      </li>
-
-      <li class="nav-item {{ Request::is('visitor/buku*') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('visitor.buku') }}">
-          <span class="menu-title">Daftar Buku</span>
-          <i class="mdi mdi-book-open-variant menu-icon"></i>
-        </a>
-      </li>
-
-      <li class="nav-item nav-category">
-        <span class="nav-link">CETAK PDF</span>
+        <div class="collapse {{ Request::is('visitor/kategori*') || Request::is('visitor/buku*') ? 'show' : '' }}" id="data-visitor">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> 
+              <a class="nav-link {{ Request::is('visitor/kategori*') ? 'active' : '' }}" href="{{ route('visitor.kategori') }}">Daftar Kategori</a>
+            </li>
+            <li class="nav-item"> 
+              <a class="nav-link {{ Request::is('visitor/buku*') ? 'active' : '' }}" href="{{ route('visitor.buku') }}">Daftar Buku</a>
+            </li>
+          </ul>
+        </div>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="/cetak-landscape" target="_blank">
-          <span class="menu-title">Cetak PDF Landscape</span>
-          <i class="mdi mdi-file-document menu-icon"></i>
+        <a class="nav-link" data-bs-toggle="collapse" href="#cetak-pdf-visitor" aria-expanded="false" aria-controls="cetak-pdf-visitor">
+          <span class="menu-title">Cetak Laporan PDF</span>
+          <i class="menu-arrow"></i>
+          <i class="mdi mdi-printer menu-icon"></i>
         </a>
+        <div class="collapse" id="cetak-pdf-visitor">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> 
+              <a class="nav-link" href="/cetak-landscape" target="_blank">Cetak Landscape</a>
+            </li>
+            <li class="nav-item"> 
+              <a class="nav-link" href="/cetak-potrait" target="_blank">Cetak Potrait</a>
+            </li>
+          </ul>
+        </div>
       </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="/cetak-potrait" target="_blank">
-          <span class="menu-title">Cetak PDF Potrait</span>
-          <i class="mdi mdi-email-open menu-icon"></i>
-        </a>
-      </li>
     @endif
   </ul>
 </nav>

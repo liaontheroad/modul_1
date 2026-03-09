@@ -58,6 +58,10 @@
                                 <td>{{ $item->nama }}</td>
                                 <td>Rp {{ number_format($item->harga, 0, ',', '.') }}</td>
                                 <td>
+                                    <a href="{{ route('barang.edit', $item->id_barang) }}" class="btn btn-warning btn-sm">
+                                        Edit
+                                    </a>
+
                                     <a href="{{ route('barang.destroy', $item->id_barang) }}" 
                                        class="btn btn-danger btn-sm"
                                        onclick="event.preventDefault(); if(confirm('Yakin mau menghapus?')) document.getElementById('delete-form-{{ $item->id_barang }}').submit();">

@@ -20,7 +20,7 @@
                 <h4 class="card-title">Tambah Buku</h4>
                 <p class="card-description"> Masukkan data buku baru </p>
                 
-                <form class="forms-sample" action="{{ route('buku.store') }}" method="POST">
+                <form id="formTambahBuku" class="forms-sample" action="{{ route('buku.store') }}" method="POST">
                     @csrf
                     
                     <div class="form-group">
@@ -48,11 +48,25 @@
                         </select>
                     </div>
                     
-                    <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
+                    <button type="button" id="btnSubmitBuku" onclick="prosesSubmitBuku()" class="btn btn-gradient-primary me-2">Submit</button>
                     <a href="{{ route('buku.index') }}" class="btn btn-light">Cancel</a>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    function prosesSubmitBuku() {
+        let form = document.getElementById("formTambahBuku");
+        let btn = document.getElementById("btnSubmitBuku");
+        if (!form.checkValidity()) {
+            form.reportValidity();
+        } else {
+            btn.disabled = true; 
+            btn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Memproses...';
+            form.submit();
+        }
+    }
+</script>
 @endsection

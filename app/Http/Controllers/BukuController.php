@@ -4,20 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Buku;
-use App\Models\Kategori; // Import Kategori Model
+use App\Models\Kategori; 
 
 class BukuController extends Controller
 {
     public function index()
     {
-        // Get all books WITH their category (Eager Loading)
-        $buku = Buku::with('kategori')->get();
+        $buku = Buku::orderBy('idbuku', 'asc')->get();
         return view('buku.index', compact('buku'));
     }
 
     public function create()
     {
-        // We need the list of categories for the <select> dropdown
         $kategori = Kategori::all();
         return view('buku.create', compact('kategori'));
     }
@@ -25,7 +23,7 @@ class BukuController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'kode' => 'required|max:20|unique:buku,kode', // Unique code
+            'kode' => 'required|max:20|unique:buku,kode', 
             'judul' => 'required|max:500',
             'pengarang' => 'required|max:200',
             'idkategori' => 'required|exists:kategori,idkategori',
@@ -40,7 +38,7 @@ class BukuController extends Controller
     public function edit($id)
     {
         $buku = Buku::findOrFail($id);
-        $kategori = Kategori::all(); // Need categories for the dropdown again
+        $kategori = Kategori::all(); 
         return view('buku.edit', compact('buku', 'kategori'));
     }
 
