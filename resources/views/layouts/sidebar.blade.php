@@ -85,7 +85,10 @@
               <a class="nav-link {{ Request::routeIs('wilayah.axios') ? 'active' : '' }}" href="{{ route('wilayah.axios') }}">Manajemen Wilayah (Axios)</a>
             </li>
             <li class="nav-item"> 
-              <a class="nav-link {{ Request::routeIs('kasir.index') ? 'active' : '' }}" href="{{ route('kasir.index') }}">Aplikasi Kasir</a>
+              <a class="nav-link {{ Request::routeIs('kasir.index') ? 'active' : '' }}" href="{{ route('kasir.index') }}">Aplikasi Kasir (Ajax)</a>
+            </li>
+            <li class="nav-item"> 
+              <a class="nav-link {{ Request::is('kasir-axios') ? 'active' : '' }}" href="{{ route('kasir.axios') }}">Aplikasi Kasir (Axios)</a>
             </li>
           </ul>
         </div>

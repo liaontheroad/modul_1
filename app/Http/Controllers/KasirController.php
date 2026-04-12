@@ -5,13 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class KasirAxiosController extends Controller
+class KasirController extends Controller
 {
+
     public function index() {
-        return view('modul_ajax.kasir');
+        return view('modul_ajax.kasir'); 
     }
 
-    public function getBarangAxios($kode) {
+    public function kasirAxios() {
+        return view('modul_ajax.kasir-axios');
+    }
+
+    public function getBarang($kode) {
         $barang = DB::table('produk')
                     ->where('kode_produk', $kode) 
                     ->first();
@@ -20,18 +25,16 @@ class KasirAxiosController extends Controller
             return response()->json($barang);
         }
 
-        return response()->json(['message' => 'Barang Tidak Ditemukan di Database'], 404);
+        return response()->json(['message' => 'Barang Tidak Ditemukan'], 404);
     }
 
-    public function storeAxios(Request $request) {
-
+    public function store(Request $request) {
         if (!$request->has('items') || count($request->items) == 0) {
             return response()->json(['message' => 'Keranjang masih kosong!'], 400);
         }
 
         DB::beginTransaction();
         try {
-            
             $penjualanId = DB::table('penjualan')->insertGetId([
                 'nomor_faktur' => 'TRX-' . strtoupper(uniqid()),
                 'user_id' => 1, 
@@ -42,7 +45,6 @@ class KasirAxiosController extends Controller
             ]);
 
             foreach ($request->items as $item) {
-
                 $produk = DB::table('produk')->where('id', $item['id'])->first();
 
                 if (!$produk) {
@@ -65,6 +67,7 @@ class KasirAxiosController extends Controller
             }
 
             DB::commit();
+            
             return response()->json([
                 'status' => 'success',
                 'message' => 'Transaksi Berhasil Disimpan!',
@@ -79,5 +82,4 @@ class KasirAxiosController extends Controller
             ], 500);
         }
     }
-
 }

@@ -79,13 +79,11 @@ Route::middleware(['auth', \App\Http\Middleware\CheckRole::class.':admin'])->gro
     Route::post('/axios-get-kota', [WilayahController::class, 'axiosGetKota'])->name('api.getKota');
     Route::post('/axios-get-kecamatan', [WilayahController::class, 'axiosGetKecamatan'])->name('api.getKecamatan');
     Route::post('/axios-get-kelurahan', [WilayahController::class, 'axiosGetKelurahan'])->name('api.getKelurahan');
-
-    // Menu Kasir
+    
+    // Halaman Kasir
     Route::get('/modul-ajax/kasir', [KasirController::class, 'index'])->name('kasir.index');
-    Route::get('/get-barang/{kode}', [KasirController::class, 'getBarang']);
-    Route::post('/simpan-transaksi', [KasirController::class, 'store']);
+    Route::get('/kasir-axios', [KasirController::class, 'kasirAxios'])->name('kasir.axios');
+    Route::get('/get-barang/{kode}', [KasirController::class, 'getBarang'])->name('kasir.getBarang');
+    Route::post('/simpan-transaksi', [KasirController::class, 'store'])->name('kasir.store');
 
-    Route::get('/kasir-axios', [KasirAxiosController::class, 'index']);
-    Route::get('/get-barang/{kode}', [KasirAxiosController::class, 'getBarangAxios']);
-    Route::post('/simpan-transaksi', [KasirAxiosController::class, 'storeAxios']);
 });
