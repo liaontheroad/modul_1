@@ -141,6 +141,13 @@
         <i class="mdi mdi-map-marker-radius menu-icon"></i>
     </a>
 </li>
+
+<li class="nav-item {{ Request::is('admin-antrian') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('antrian.admin') }}">
+        <span class="menu-title">Antrian</span>
+        <i class="mdi mdi-ticket-account menu-icon"></i>
+    </a>
+</li>
     @endif
 
     @if(Auth::user()->role?->name == 'visitor')
@@ -181,6 +188,28 @@
         </div>
       </li>
 
+    <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="collapse" href="#menu-antrian"
+            aria-expanded="{{ Request::is('guest') || Request::is('papan') ? 'true' : 'false' }}">
+            <span class="menu-title">Antrian Publik</span>
+            <i class="menu-arrow"></i>
+            <i class="mdi mdi-monitor menu-icon"></i>
+        </a>
+        <div class="collapse {{ Request::is('guest') || Request::is('papan') ? 'show' : '' }}" id="menu-antrian">
+            <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('guest') ? 'active' : '' }}" href="/guest">
+                        Form Daftar
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('papan') ? 'active' : '' }}" href="/papan">
+                        Papan Antrian
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </li>
     @endif
 
     @if(Auth::user()->role?->name == 'pemilik_vendor')

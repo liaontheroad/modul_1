@@ -15,6 +15,7 @@ use App\Http\Controllers\KantinController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\TokoController;
+use App\Http\Controllers\AntrianController;
 
 
 // --- RUTE CUSTOMER (GUEST) ---
@@ -119,4 +120,20 @@ Route::middleware(['auth', \App\Http\Middleware\CheckRole::class.':admin'])->gro
     Route::post('/customer/store1', [CustomerController::class, 'store1'])->name('customer.store1');
     Route::get('/customer/tambah2', [CustomerController::class, 'tambah2'])->name('customer.tambah2');
     Route::post('/customer/store2', [CustomerController::class, 'store2'])->name('customer.store2');
+});
+
+// ── PUBLIC (no auth) ──────────────────────────────────────────
+Route::get('/guest', [AntrianController::class, 'guest']);
+Route::post('/antrian/daftar', [AntrianController::class, 'daftar']);
+Route::get('/antrian/tiket/{id}', [AntrianController::class, 'tiket']);
+Route::get('/papan', [AntrianController::class, 'papan']);
+Route::get('/sse/antrian', [AntrianController::class, 'stream']);
+
+// ── ADMIN ONLY ────────────────────────────────────────────────
+Route::middleware(['auth', \App\Http\Middleware\CheckRole::class.':admin'])->group(function () {
+    Route::get('/admin-antrian', [AntrianController::class, 'admin'])->name('antrian.admin');
+    Route::post('/antrian/panggil', [AntrianController::class, 'panggil']);
+    Route::post('/antrian/panggil-terlambat', [AntrianController::class, 'panggilTerlambat']);
+    Route::post('/antrian/terlambat', [AntrianController::class, 'terlambat']);
+    Route::post('/antrian/reset', [AntrianController::class, 'reset']);
 });
