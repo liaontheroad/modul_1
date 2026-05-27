@@ -148,6 +148,38 @@
         <i class="mdi mdi-ticket-account menu-icon"></i>
     </a>
 </li>
+
+{{-- NFC MENU --}}
+<li class="nav-item {{ Request::is('nfc*') ? 'active' : '' }}">
+    <a class="nav-link" data-bs-toggle="collapse" href="#menu-nfc"
+      aria-expanded="{{ Request::is('nfc*') ? 'true' : 'false' }}"
+      aria-controls="menu-nfc">
+
+        <span class="menu-title">NFC Absensi</span>
+        <i class="menu-arrow"></i>
+        <i class="mdi mdi-wifi menu-icon"></i>
+    </a>
+
+    <div class="collapse {{ Request::is('nfc*') ? 'show' : '' }}" id="menu-nfc">
+        <ul class="nav flex-column sub-menu">
+
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('nfc/register') ? 'active' : '' }}"
+                  href="{{ route('nfc.register.page') }}">
+                    Register NFC
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link {{ Request::is('nfc/absensi') ? 'active' : '' }}"
+                  href="{{ route('nfc.index') }}">
+                    Data Absensi
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</li>
     @endif
 
     @if(Auth::user()->role?->name == 'visitor')

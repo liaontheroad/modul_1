@@ -16,7 +16,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\TokoController;
 use App\Http\Controllers\AntrianController;
-
+use App\Http\Controllers\NfcAttendanceController;
 
 // --- RUTE CUSTOMER (GUEST) ---
 Route::get('/', [KantinController::class, 'index'])->name('cashier.index');
@@ -136,4 +136,29 @@ Route::middleware(['auth', \App\Http\Middleware\CheckRole::class.':admin'])->gro
     Route::post('/antrian/panggil-terlambat', [AntrianController::class, 'panggilTerlambat']);
     Route::post('/antrian/terlambat', [AntrianController::class, 'terlambat']);
     Route::post('/antrian/reset', [AntrianController::class, 'reset']);
+});
+
+// ── NFC PUBLIC ────────────────────────────────────────────────
+Route::get('/guest/nfc', [NfcAttendanceController::class, 'scanner'])
+    ->name('guest.nfc');
+
+Route::post('/nfc/scan', [NfcAttendanceController::class, 'scan'])
+    ->name('nfc.scan');
+
+Route::get('/nfc/test', function () {
+    return response()->json([
+        'message' => 'Server connected'
+    ]);
+});
+
+// ── NFC ADMIN ONLY ────────────────────────────────────────────
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/nfc/register', [NfcAttendanceController::class, 'registerPage'])
+        ->name('nfc.register.page');
+
+    Route::post('/nfc/register', [NfcAttendanceController::class, 'registerCard'])
+        ->name('nfc.register');
+
+    Route::get('/nfc/absensi', [NfcAttendanceController::class, 'index'])
+        ->name('nfc.index');
 });

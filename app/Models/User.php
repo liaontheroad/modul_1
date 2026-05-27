@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\NfcCard;
+use App\Models\AbsensiNfc;
 
 class User extends Authenticatable
 {
@@ -27,7 +29,6 @@ class User extends Authenticatable
 ];
 
     /**
-     * The attributes that should be hidden for serialization.
      *
      * @var list<string>
      */
@@ -58,4 +59,14 @@ class User extends Authenticatable
     {
         return optional($this->role)->name === $roleName;
     }
+
+    public function nfcCards()
+{
+    return $this->hasMany(NfcCard::class);
+}
+
+public function absensiNfc()
+{
+    return $this->hasMany(AbsensiNfc::class);
+}
 }
